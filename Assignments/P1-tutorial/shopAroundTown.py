@@ -56,7 +56,7 @@ def getAllSubsets(lst):
     Returns the powerset of lst, i.e. a list of all the possible subsets of lst
     """
     if not lst:
-        return []
+        return [[]]
     withFirst = [[lst[0]] + rest for rest in getAllSubsets(lst[1:])]
     withoutFirst = getAllSubsets(lst[1:])
     return withFirst + withoutFirst
@@ -67,7 +67,7 @@ def getAllPermutations(lst):
     Returns a list of all permutations of lst
     """
     if not lst:
-        return []
+        return [[]]
     elif len(lst) == 1:
         return lst
     allPermutations = []
@@ -75,6 +75,7 @@ def getAllPermutations(lst):
         item = lst[i]
         withoutItem = lst[:i] + lst[i:]
         allPermutations += prependToAll(item, getAllPermutations(withoutItem))
+    print(allPermutations)
     return allPermutations
 
 def prependToAll(item, lsts):
